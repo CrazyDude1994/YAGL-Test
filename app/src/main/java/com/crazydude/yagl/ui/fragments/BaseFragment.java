@@ -3,7 +3,6 @@ package com.crazydude.yagl.ui.fragments;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +11,7 @@ import com.crazydude.yagl.di.components.ActivityComponent;
 import com.crazydude.yagl.di.components.FragmentComponent;
 import com.crazydude.yagl.di.modules.FragmentModule;
 import com.crazydude.yagl.ui.activity.BaseActivity;
+import com.crazydude.yagl.ui.presenter.BasePresenter;
 
 import butterknife.ButterKnife;
 import lombok.Getter;
@@ -29,6 +29,8 @@ abstract public class BaseFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //Do not recreate presenter
+        setRetainInstance(true);
 
         mFragmentComponent = getActivityComponent()
                 .provideFragmentComponent(new FragmentModule(this));
@@ -41,7 +43,8 @@ abstract public class BaseFragment extends Fragment {
         super.onCreateView(inflater, container, savedInstanceState);
 
         View view = inflater.inflate(getLayoutRes(), container, false);
-        ButterKnife.bind(view);
+        ButterKnife.bind(this, view);
+        getPresenter().attachView(this);
 
         return view;
     }
@@ -53,4 +56,13 @@ abstract public class BaseFragment extends Fragment {
     abstract protected void injectDependencies();
 
     abstract protected int getLayoutRes();
+
+    abstract protected BasePresenter getPresenter();
+
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        getPresenter().detachView();
+    }
 }

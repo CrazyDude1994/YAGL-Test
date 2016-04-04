@@ -2,6 +2,7 @@ package com.crazydude.yagl;
 
 import android.app.Application;
 
+import com.activeandroid.ActiveAndroid;
 import com.crazydude.yagl.di.components.ApplicationComponent;
 import com.crazydude.yagl.di.components.DaggerApplicationComponent;
 import com.crazydude.yagl.di.modules.ApplicationModule;
@@ -21,6 +22,7 @@ public class YAGLApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        ActiveAndroid.initialize(this);
 
         mApplicationComponent = DaggerApplicationComponent.builder()
                 .applicationModule(new ApplicationModule(this))

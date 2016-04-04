@@ -7,4 +7,6 @@
     <string name="network_error">Network error. Check your internet</string>
     <string name="unknown_error">Unknown error</string>
     <string name="ok">OK</string>
+    <string name="failed_to_fetch_repositories">Failed to fetch repositories. Showing cached repos</string>
+    <string name="retry">Retry</string>
 </resources>

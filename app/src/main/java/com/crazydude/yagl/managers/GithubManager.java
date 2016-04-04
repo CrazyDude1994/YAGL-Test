@@ -8,7 +8,7 @@ import com.alorma.gitskarios.core.Pair;
 import com.alorma.gitskarios.core.client.TokenProvider;
 import com.crazydude.yagl.exception.GithubAuthException;
 import com.crazydude.yagl.exception.NetworkException;
-import com.crazydude.yagl.model.RepositoryModel;
+import com.crazydude.yagl.model.database.GithubRepositoryModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,23 +55,6 @@ public class GithubManager {
                         return Observable.error(new NetworkException());
                     } else {
                         return Observable.error(new GithubAuthException());
-                    }
-                });
-    }
-
-    public Observable<ArrayList<RepositoryModel>> loadSelfRepository() {
-        return new UserReposClient()
-                .observable()
-                .observeOn(AndroidSchedulers.mainThread())
-                .map(new Func1<Pair<List<Repo>, Integer>, ArrayList<RepositoryModel>>() {
-                    @Override
-                    public ArrayList<RepositoryModel> call(Pair<List<Repo>, Integer> listIntegerPair) {
-                        ArrayList<RepositoryModel> models = new ArrayList<>();
-                        for (Repo repo : listIntegerPair.first) {
-                            models.add(new RepositoryModel(repo.name));
-                        }
-
-                        return models;
                     }
                 });
     }
