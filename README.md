@@ -26,12 +26,18 @@ This application first tries to load data from db, also it runs network request 
 
 ## Packages
 
-di - Dependency injection. Includes components, modules, qualifiers & scopes\r\n
+di - Dependency injection. Includes components, modules, qualifiers & scopes
+
 exception - application related exceptions
+
 managers - github & preference managers
+
 models - db & view models
+
 repository - implementation of repository pattern (caching, db, network). Also uses mappers & specifications.
+
 ui - views, fragments, activies. Done via MVP pattern using few base classes.
+
 
 
 ## TODO
