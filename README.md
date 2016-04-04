@@ -1,5 +1,7 @@
 # YAGL-Test
 
+YAGL stands for "Yet Another Github Login"
+
 This repository is created as test application.
 
 ## Libraries & patterns
