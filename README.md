@@ -26,7 +26,7 @@ This application first tries to load data from db, also it runs network request 
 
 ## Packages
 
-di - Dependency injection. Includes components, modules, qualifiers & scopes
+di - Dependency injection. Includes components, modules, qualifiers & scopes\r\n
 exception - application related exceptions
 managers - github & preference managers
 models - db & view models
